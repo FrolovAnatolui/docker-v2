@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  docker-nginx:
+    build:
+      context: ./nginx-image
+    volumes:
+      - /webroot:/var/www/html
+    ports:
+      - '8080:80'
