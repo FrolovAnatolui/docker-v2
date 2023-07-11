@@ -9,7 +9,28 @@ LABEL description="Обычный докер файл для многоконт�
 ARG DEBIAN_FRONTEND=noninteractive
 
 # update ubuntu software repository
-RUN apt update
+RUN apt-get update && \
+apt dist-upgrade -y 
+
+RUN apt install build-essential -y  curl file git
+RUN apt-get install -y vim
+RUN apt-get install -y xclip
+RUN apt-get install -y tmux
+RUN apt-get install -y tmuxinator
+RUN export EDITOR='vim'
+#RUN apt-get install -y 
+#RUN apt install git-core curl fonts-powerline
+
+# Uses "Spaceship" theme with some customization. Uses some bundled plugins and installs some more from github
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
+    -t https://github.com/denysdovhan/spaceship-prompt \
+    -a 'SPACESHIP_PROMPT_ADD_NEWLINE="false"' \
+    -a 'SPACESHIP_PROMPT_SEPARATE_LINE="false"' \
+    -p git \
+    -p ssh-agent \
+    -p https://github.com/zsh-users/zsh-autosuggestions \
+    -p https://github.com/zsh-users/zsh-completions
+
 
 # Установка пакетов Nginx, PHP-FPM, supervisor 
 # После завершения установки, чтобы уменьшить размер подьзовательского образа удалим кэш все пакетов
@@ -18,6 +39,28 @@ RUN apt install -y nginx php-fpm supervisor && \
 rm -rf /var/lib/apt/lists/* && \
 apt clean
 
+RUN apt-get update
+RUN apt-get install zsh -y
+#RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
+#RUN apt-get update && \ 
+#    apt-get install -y software-properties-common && \
+#    add-apt-repository ppa:deadsnakes/ppa && \
+#    apt-get update
+#
+#RUN apt-get install -y zsh
+# Default powerline10k theme, no plugins installed
+#RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)"
+
+# Uses "Spaceship" theme with some customization. Uses some bundled plugins and installs some more from github
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
+    -t https://github.com/denysdovhan/spaceship-prompt \
+    -a 'SPACESHIP_PROMPT_ADD_NEWLINE="false"' \
+    -a 'SPACESHIP_PROMPT_SEPARATE_LINE="false"' \
+    -p git \
+    -p ssh-agent \
+    -p https://github.com/zsh-users/zsh-autosuggestions \
+    -p https://github.com/zsh-users/zsh-completions
+CMD ["sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"]
 # Define the ENV variable
 ENV nginx_vhost /etc/nginx/sites-available/default
 ENV php_conf /etc/php/7.4/fpm/php.ini
