@@ -5,6 +5,6 @@ services:
       context: ./nginx-image
     volumes:
       - /webroot:/var/www/html
-      - ./documents/configs:/mnt/document
+      - ./documents:/mnt/documents
     ports:
       - '8080:80'
