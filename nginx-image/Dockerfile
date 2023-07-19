@@ -40,7 +40,12 @@ rm -rf /var/lib/apt/lists/* && \
 apt clean
 
 RUN apt-get update
-RUN apt-get install zsh -y
+RUN apt-get install -y zsh
+run curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+RUN chmod u+x nvim.appimage
+CMD ["./nvim.appimage"]
+
+
 #RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
 #RUN apt-get update && \ 
 #    apt-get install -y software-properties-common && \
