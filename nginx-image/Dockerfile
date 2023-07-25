@@ -1,5 +1,6 @@
 # Download base image ubuntu 20.04
 FROM ubuntu:20.04
+#FROM ubuntu:latest
 # Добавим подробную информацию о пользовательском образе, используя инструкцию LABEL.
 LABEL maintainer="frolovanatolui@gmail.com"
 LABEL version="0.1"
@@ -45,7 +46,45 @@ run curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appi
 RUN chmod u+x nvim.appimage
 CMD ["./nvim.appimage"]
 
+RUN apt-get update && \
+    apt-get install -y neovim
+CMD ["nvim"]
+# Install nvm
+#RUN git clone http://github.com/creationix/nvm.git /root/.nvm;
+#RUN chmod -R 777 /root/.nvm/;
+#RUN bash /root/.nvm/install.sh;
+#RUN export NVM_DIR="$HOME/.nvm";
+#RUN echo "[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh" >> $HOME/.bashrc;
+#RUN bash -i -c 'nvm ls-remote';
+#RUN apt update -y &&  apt upgrade -y && apt install wget bash -y
+#RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+#
 
+
+
+#SHELL ["/bin/bash", "--login", "-c"]
+
+#RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+#RUN bash -i -c 'nvm install 10.15.3'
+
+
+
+
+
+# Обновление пакетов и установка зависимостей
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Установка nvim
+RUN add-apt-repository ppa:neovim-ppa/stable && \
+    apt-get update && \
+    apt-get install -y neovim
+
+
+#RUN /bin/bash -i -c "source ~/.nvm/nvm.sh && nvm ls-remote"
 #RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
 #RUN apt-get update && \ 
 #    apt-get install -y software-properties-common && \

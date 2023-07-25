@@ -4,7 +4,7 @@ services:
     build:
       context: ./nginx-image
     volumes:
-      - /webroot:/var/www/html
-      - ./documents:/mnt/documents
+      - $HOME/frolov-center/webroot:/var/www/html
+      - $HOME/frolov-center/documents:/mnt/documents
     ports:
       - '8080:80'
