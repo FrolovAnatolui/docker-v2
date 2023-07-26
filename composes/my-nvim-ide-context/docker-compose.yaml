@@ -1,0 +1,10 @@
+version: "3.5"
+services:
+  docker-ide:
+    build:
+      context: ../../my-nvim-ide
+    volumes:
+      - $HOME/frolov-center/webroot:/var/www/html
+      - $HOME/frolov-center/documents:/mnt/documents
+    ports:
+      - '8080:80'
