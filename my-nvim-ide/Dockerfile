@@ -13,6 +13,31 @@ RUN add-apt-repository ppa:neovim-ppa/stable && \
     apt-get update && \
     apt-get install -y neovim
 
+
+
+RUN apt update && apt install -y build-essential
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
+
+#  Node.js
+RUN export NVM_DIR="$HOME/.nvm" && \
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
+    nvm install node
+RUN apt-get install -y npm
+# 
+#RUN node -v && npm -v
+# v20.5.0 
+# 9.8.0
+
+#RUN npm install
+RUN npm install -g python
+RUN curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o rust-analyze
+RUN chmod +x rust-analyze
+RUN mv rust-analyze /usr/local/bin
+RUN mkdir -p ~/.config/nvim/
+RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+#RUN nvm install node
 # Установка плагинов для nvim (если необходимо)
 # RUN nvim +PlugInstall +qall
 
@@ -21,3 +46,4 @@ RUN add-apt-repository ppa:neovim-ppa/stable && \
 
 # Запуск nvim при старте контейнера
 #CMD [ "nvim" ]
+

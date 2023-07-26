@@ -2,9 +2,10 @@ version: "3.5"
 services:
   docker-nginx:
     build:
-      context: ./nginx-image
+      context: ../../nginx-image
     volumes:
       - $HOME/frolov-center/webroot:/var/www/html
       - $HOME/frolov-center/documents:/mnt/documents
+      - $HOME/frolov-center/documents/configs/nvim/digit-python/init.vim:$HOME/.config/nvim/init.vim
     ports:
       - '8080:80'

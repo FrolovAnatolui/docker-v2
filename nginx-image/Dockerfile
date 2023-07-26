@@ -40,8 +40,8 @@ RUN apt install -y nginx php-fpm supervisor && \
 rm -rf /var/lib/apt/lists/* && \
 apt clean
 
-RUN apt-get update
-RUN apt-get install -y zsh
+#RUN apt-get update
+#RUN apt-get install -y zsh
 run curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 RUN chmod u+x nvim.appimage
 CMD ["./nvim.appimage"]
@@ -72,16 +72,16 @@ CMD ["nvim"]
 
 
 # Обновление пакетов и установка зависимостей
-RUN apt-get update && apt-get install -y \
-    software-properties-common \
-    curl \
-    git \
-    && rm -rf /var/lib/apt/lists/*
-
-# Установка nvim
-RUN add-apt-repository ppa:neovim-ppa/stable && \
-    apt-get update && \
-    apt-get install -y neovim
+##RUN apt-get update && apt-get install -y \
+#    software-properties-common \
+#    curl \
+#    git \
+#    && rm -rf /var/lib/apt/lists/*
+#
+## Установка nvim
+#RUN add-apt-repository ppa:neovim-ppa/stable && \
+#    apt-get update && \
+#    apt-get install -y neovim
 
 
 #RUN /bin/bash -i -c "source ~/.nvm/nvm.sh && nvm ls-remote"
