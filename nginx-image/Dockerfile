@@ -4,7 +4,6 @@ FROM ubuntu:20.04
 #Let's add detailed information about the user image using the LABEL instruction.
 LABEL maintainer="frolovanatolui@gmail.com"
 LABEL version="0.1"
-LABEL description="Обычный докер файл для многоконтейнерного docker-compose PHP-FPM and Nginx services"
 
 # Using ‘DEBIAN_FRONTEND = noninteractive’ prevents interactive queries when running the apt command
 ARG DEBIAN_FRONTEND=noninteractive

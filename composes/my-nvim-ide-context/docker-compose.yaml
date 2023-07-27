@@ -8,3 +8,6 @@ services:
       - $HOME/frolov-center/documents:/mnt/documents
     ports:
       - '8080:80'
+    # let int 
+    #    tty: true
+  

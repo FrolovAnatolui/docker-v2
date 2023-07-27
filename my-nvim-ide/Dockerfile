@@ -45,5 +45,6 @@ RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/p
 # COPY .vimrc /root/.vimrc
 
 # Запуск nvim при старте контейнера
-#CMD [ "nvim" ]
-
+#ENTRYPOINT tail -f /dev/null/
+CMD sleep infinity
+EXPOSE 80 443
