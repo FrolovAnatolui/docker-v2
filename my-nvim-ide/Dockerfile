@@ -46,5 +46,7 @@ RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/p
 
 # Запуск nvim при старте контейнера
 #ENTRYPOINT tail -f /dev/null/
+# zsh installation
+RUN apt-get install -y zsh
 CMD sleep infinity
 EXPOSE 80 443

@@ -5,7 +5,8 @@ services:
       context: ../../my-nvim-ide
     volumes:
       - $HOME/frolov-center/webroot:/var/www/html
-      - $HOME/frolov-center/documents:/mnt/documents
+        #      - $HOME/frolov-center/documents/configs:$HOME/frolov-center/documents/configs
+      - $HOME/frolov-center/documents/configs:/root/frolov-center/documents/configs
     ports:
       - '8080:80'
     # let int 
