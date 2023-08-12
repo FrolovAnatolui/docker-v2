@@ -4,11 +4,8 @@ services:
     build:
       context: ../../my-nvim-ide
     volumes:
-      - $HOME/frolov-center/webroot:/var/www/html
-        #      - $HOME/frolov-center/documents/configs:$HOME/frolov-center/documents/configs
-      - $HOME/frolov-center/documents/configs:/root/frolov-center/documents/configs
+      - $HOME/frolov-center/documents:/root/frolov-center/documents
     ports:
-      - '8080:80'
-    # let int 
+      - "8080:80"
+    # let int
     #    tty: true
-  
